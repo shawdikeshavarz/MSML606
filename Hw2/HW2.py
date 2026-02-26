@@ -36,6 +36,7 @@ class HomeWork2:
                 stack.append(new_node) # add back to the stack so it can still be part of tree
             else:
                 stack.append(TreeNode(val=char, left= None, right=None)) # add number to tree so it can be grabbed later
+        return stack.pop()
         
 
 
@@ -46,7 +47,10 @@ class HomeWork2:
     # you can see the examples in p2_traversals.csv
 
     def prefixNotationPrint(self, head: TreeNode) -> list:
-        pass
+        if head is None:
+            return []
+        return [head.val] + self.prefixNotationPrint(head.left) + self.prefixNotationPrint(head.right)
+            
 
     # Problem 2.2: Use in-order traversal (left, root, right) for infix notation with appropriate parentheses.
     # return an array of elements of an infix expression
@@ -67,7 +71,9 @@ class HomeWork2:
     # you can see the examples in p2_traversals.csv
 
     def postfixNotationPrint(self, head: TreeNode) -> list:
-        pass
+        if head is None:
+            return []
+        return self.postfixNotationPrint(head.left) + self.postfixNotationPrint(head.right) + [head.val]
 
 
 class Stack:
