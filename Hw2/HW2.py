@@ -1,3 +1,4 @@
+# No external sources were used; all ideas are my own or from course lecture slides.
 import csv
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -24,7 +25,18 @@ class HomeWork2:
     #     3   4
 
     def constructBinaryTree(self, input) -> TreeNode:
-        pass
+        # top node is root node
+        stack = [] 
+        operators = {"+", "-", "*", "/"}
+        for char in input:
+            if char in operators:
+                right_node = stack.pop() # most recent addition to stack is right child
+                left_node = stack.pop()
+                new_node = TreeNode(val=char, left=left_node, right=right_node) # create subtree from operator
+                stack.append(new_node) # add back to the stack so it can still be part of tree
+            else:
+                stack.append(TreeNode(val=char, left= None, right=None)) # add number to tree so it can be grabbed later
+        
 
 
 
