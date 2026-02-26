@@ -118,7 +118,7 @@ class Stack:
     # handle division by zero appropriately
 
     # DO NOT USE EVAL function for evaluating the expression
-
+    
 
     # sort of how we used stack to make the tree. once we get to an operator, we can calculate it 
     def evaluatePostfix(self, exp: str) -> int:
