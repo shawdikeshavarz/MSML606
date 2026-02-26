@@ -121,34 +121,31 @@ class Stack:
 
 
     # sort of how we used stack to make the tree. once we get to an operator, we can calculate it 
-    def evaluatePostfix(exp: str) -> int:
+    def evaluatePostfix(self, exp: str) -> int:
         # TODO: implement this using your Stack class
         exp_list = exp.split(" ")
-        eval_stack = Stack()
+        self.elements = []
         operators = {"+", "-", "*", "/"}
         # go through list
         for char in exp_list:
             # if we reach an operator we reached a subtree which means we can do some evaluating
             if char in operators:
-                right_side = eval_stack.pop()
-                left_side = eval_stack.pop()
+                right_side = self.pop()
+                left_side = self.pop()
                 if char == "+":
-                    eval_stack.push(left_side + right_side)
+                    self.push(left_side + right_side)
                 elif char == "-":
-                    eval_stack.push(left_side - right_side)
+                    self.push(left_side - right_side)
                 elif char == "*":
-                    eval_stack.push(left_side * right_side)
+                    self.push(left_side * right_side)
                 elif char == "/":
                     # handling division by 0 with "DIVZERO"
-                    try:
-                        val = (left_side / right_side)
-                        eval_stack.push(val)
-                    except ZeroDivisionError:
-                        return "DIVZERO"
+                    val = (left_side / right_side)
+                    self.push(val)
             # if it is a number we should change it to an integer to be able to do calculations
             else:
-                eval_stack.push(int(char))
-        return eval_stack.pop
+                self.push(int(char))
+        return self.pop()
                         
                         
                         
